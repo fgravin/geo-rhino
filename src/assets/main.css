@@ -1,35 +1,184 @@
 @import './base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-weight: normal;
-}
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
+@layer components {
+    a {
+        @apply hover:text-blue-600;
+    }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
+    main {
+        @apply h-full flex flex-row-reverse pt-16;
+    }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+    main > * {
+        @apply h-full relative;
+    }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+    header {
+        @apply shadow-lg absolute z-10 w-full bg-white;
+    }
+
+    header > nav {
+        @apply flex flex-row w-full px-10 py-5 justify-between;
+    }
+
+    header > nav > ul {
+        @apply flex gap-14;
+    }
+
+    header .rhino-dropdown-btn {
+        @apply w-48 truncate;
+    }
+
+    header .rhino-dropdown-list {
+        @apply max-h-[50vh] overflow-y-auto;
+    }
+    
+    .rhino-btn {
+        @apply border rounded-lg px-4 py-2.5;
+    }
+
+    .rhino-btn.primary {
+        @apply bg-blue-600 text-white hover:bg-blue-400;
+    }
+
+    .rhino-icon {
+        @apply w-4 h-4 inline-block;
+    }
+
+    .rhino-side-bar {
+        @apply  w-10 border rounded-sm;
+    }
+
+    .rhino-side-bar > * {
+        @apply text-center py-2 border-b hover:bg-slate-200 hover:cursor-pointer;
+    }
+
+    .rhino-side-bar > *.expanded {
+        @apply bg-slate-300;
+    }
+
+    .rhino-bg-selector {
+        @apply flex flex-row absolute bottom-5 left-5 z-50 border rounded-md bg-white shadow-lg;
+    }
+
+    .rhino-bg-selector-opened {
+        @apply flex flex-row;
+    }
+
+    .rhino-bg-sel {
+        @apply h-20 w-20 m-1 bg-white hover:bg-blue-300;
+    }
+
+    .rhino-bg-sel-icon {
+        @apply border hover:border-blue-500 hover:opacity-75;
+    }
+
+    .rhino-search {
+        @apply absolute bottom-5 right-5 z-20 py-3 px-5 bg-white border rounded-sm shadow-sm;
+    }
+
+    .rhino-layer-panel {
+        @apply flex flex-col h-full p-3 w-[450px] max-h-full overflow-y-auto overflow-x-hidden;
+    }
+
+    .rhino-layer-panel > * {
+        @apply p-1.5;
+    }
+
+    .rhino-dropdown {
+        @apply inline-block;
+    }
+    
+    .rhino-dropdown-list {
+        @apply absolute left-0 z-10 py-[5px] mt-[2px] w-auto bg-white border shadow-sm rounded-md;
+    }
+
+    .rhino-dropdown-list-item {
+        @apply h-full w-full hover:bg-[#f5f5f5] py-[3px] px-5 cursor-pointer text-left;
+    }
+
+    .rhino-navbar-dropdown .rhino-dropdown-btn {
+        @apply w-16 h-full border-none [color:var(--color-navbar-default)]
+        hover:bg-[color:var(--color-primary)]
+        [&.expanded]:bg-[color:var(--color-primary)] [&.expanded]:text-blue-500;
+    }
+
+    .rhino-navbar-dropdown .rhino-dropdown-wrapper {
+        @apply absolute w-full right-0;
+    }
+
+    .rhino-navbar-dropdown .rhino-dropdown-list {
+        @apply bg-transparent border-none gap-[1px] shadow-none m-0 py-0 float-right relative left-auto bg-white;
+    }
+
+    .rhino-navbar-dropdown .rhino-dropdown-list li {
+        @apply h-16 w-16 bg-[color:var(--color-primary)]
+        hover:bg-white hover:[color:var(--color-primary)] 
+        [&.selected]:bg-white [&.selected]:[color:var(--color-primary)];
+    }
+
+    .rhino-navbar-dropdown .rhino-dropdown-list-item {
+        @apply uppercase text-center;
+    }
+
+    .rhino-caret {
+        @apply inline-block w-0 h-0 align-middle;
+        border-top: 4px dashed;
+        border-top: 4px solid \9;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+    }
+
+    .rhino-collapse {
+        @apply relative max-h-0 overflow-hidden duration-[.70s] transition-[max-height] ease-in-out;
+    }
+
+    .rhino-collapse.expanded {
+        @apply max-h-[3000px];
+    }
+
+    .rhino-sortable-ghost {
+        @apply before:absolute before:w-full before:h-full before:z-10;
+    }
+
+    .rhino-sortable-drag {
+        @apply drop-shadow-md;
+    }
+
+    .rhino-layer-manager-item {
+        @apply mx-3;
+    }
+
+    .rhino-layer-manager-item-content {
+        @apply select-text mx-8 w-full transition-[height] duration-[0.25s] overflow-hidden h-0 ease-linear grid grid-flow-col auto-cols-max;
+    }
+
+    .rhino-layer-manager-item-content input {
+        @apply bg-slate-400;
+    }
+
+    .rhino-theme-selector {
+        @apply  text-center bg-white;
+    }
+  
+    .ol-overlaycontainer-stopevent {
+        @apply top-5 left-5 !w-4 flex flex-col gap-2;
+    }
+
+    .ol-control {
+        @apply bg-white border w-8 h-8 rounded-md flex flex-col justify-center hover:bg-blue-400;
+    }
+
+    .ol-zoom {
+        @apply h-16 hover:bg-white;
+    }
+
+    .ol-zoom-in, .ol-zoom-out {
+        @apply ol-control items-center;
+    }
 }
