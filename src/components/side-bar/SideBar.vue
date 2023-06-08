@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useTranslation } from 'i18next-vue'
 import { storeToRefs } from 'pinia'
-import { Cog8ToothIcon, InformationCircleIcon, MapPinIcon, PencilIcon, Square3Stack3DIcon, WalletIcon } from '@heroicons/vue/24/outline'
+import { Cog8ToothIcon, InformationCircleIcon, MapPinIcon, PencilIcon, Square3Stack3DIcon, WalletIcon, SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 
 import { useAppStore } from '@/stores/app.store'
 import { useMapStore } from '@/stores/map.store'
@@ -11,6 +11,7 @@ const appStore = useAppStore()
 const mapStore = useMapStore()
 const nbSelectedLayers = computed(() => mapStore.layers.length)
 const { layersOpen: isLayersExpanded, isCatalogExpanded } = storeToRefs(appStore)
+const darkModeOn = ref(false)
 </script>
 
 <template>
@@ -26,9 +27,31 @@ const { layersOpen: isLayersExpanded, isCatalogExpanded } = storeToRefs(appStore
                 <Square3Stack3DIcon class="rhino-icon" />
             </button>
         </li>
-        <li><PencilIcon class="rhino-icon" /></li>
-        <li><MapPinIcon class="rhino-icon" /></li>
-        <li><Cog8ToothIcon class="rhino-icon" /></li>
-        <li><InformationCircleIcon class="rhino-icon" /></li>
+        <li>
+            <button @click="() => console.log('To be implemented')">
+                <PencilIcon class="rhino-icon" />
+            </button>
+        </li>
+        <li>
+            <button @click="() => console.log('To be implemented')">
+                <MapPinIcon class="rhino-icon" />
+            </button>
+        </li>
+        <li>
+            <button @click="() => console.log('To be implemented')">
+                <Cog8ToothIcon class="rhino-icon" />
+            </button>
+        </li>
+        <li>
+            <button @click="() => console.log('To be implemented')">
+                <InformationCircleIcon class="rhino-icon" />
+            </button>
+        </li>
+        <li>
+            <button @click="() => darkModeOn = !darkModeOn">
+                <MoonIcon class="rhino-icon" v-if="!darkModeOn" />
+                <SunIcon class="rhino-icon" v-if="darkModeOn" />
+            </button>
+        </li>
     </ul>
 </template>

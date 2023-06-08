@@ -8,22 +8,24 @@ import SideBar from '@/components/side-bar/SideBar.vue'
 </script>
 
 <template>
-  <header>
-    <HeaderItem />
-  </header>
+  <div class="rhino-app">
+    <header>
+      <HeaderItem />
+    </header>
 
-  <main>
-    <div class="self-center h-auto">
-      <SideBar />
-    </div>
-    <LayerPanel />
-    <div class="h-full w-full">
-      <BackgroundSelector />
-      <MapContainer />
-      <SearchBar />
-    </div>
-  </main>
+    <main>
+      <div class="self-center h-auto">
+        <SideBar />
+      </div>
+      <LayerPanel />
+      <div class="h-full w-full">
+        <BackgroundSelector />
+        <MapContainer />
+        <SearchBar />
+      </div>
+    </main>
 
-  <footer>
-  </footer>
+    <footer>
+    </footer>    
+  </div>
 </template>
