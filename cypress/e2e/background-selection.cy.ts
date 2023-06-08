@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 import type { AUTWindowOlMap } from '../types'
 
 describe('Background selector', () => {

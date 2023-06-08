@@ -77,7 +77,7 @@ export default function useOpenLayers() {
     layer.set('queryable_id', spec.id)
     layer.setOpacity(spec.opacity as number)
 
-    if (spec.metadata?.hasOwnProperty('attribution')) {
+    if (spec.metadata?.attribution) {
       const source = layer.getSource()
       source?.setAttributions(spec.metadata.attribution)
     }
