@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import { statePersistorLayersService } from '@/services/state-persistor/state-persistor-layers.service'
+import { statePersistorLangService } from '@/services/state-persistor/state-persistor-lang.service'
+
 import BackgroundSelector from '@/components/background-selector/BackgroundSelector.vue'
 import LayerPanel from '@/components/layer-panel/LayerPanel.vue'
 import HeaderItem from './components/HeaderItem.vue'
 import MapContainer from '@/components/map/MapContainer.vue'
 import SearchBar from '@/components/search-bar/SearchBar.vue'
 import SideBar from '@/components/side-bar/SideBar.vue'
+
+statePersistorLayersService.bootstrap()
+statePersistorLangService.bootstrap()
 </script>
 
 <template>
