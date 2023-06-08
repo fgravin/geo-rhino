@@ -31,7 +31,10 @@ function toggleParent(node: LayerTreeNodeModel) {
 </script>
 
 <template>
-  <div class="mb-px" v-if="isParent" key="node.id">    
+  <div
+    class="mb-px"
+    :class="node.depth > 1 ? 'ml-5' : ''"
+    v-if="isParent" key="node.id">    
     <button
       v-if="node.depth === 1"
       class="group node-1 w-full text-left flex px-2 py-1.5 uppercase bg-tertiary truncate"
