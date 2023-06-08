@@ -4,6 +4,7 @@ import { ref } from 'vue'
 export const useAppStore = defineStore(
   'app',
   () => {
+    const darkModeOn = ref(false)
     const lang = ref('fr')
     const layersOpen = ref(true)
     const isCatalogExpanded = ref(true)
@@ -21,6 +22,10 @@ export const useAppStore = defineStore(
       isCatalogExpanded.value = open
     }
 
+    function toggleDarkMode() {
+      darkModeOn.value = !darkModeOn.value
+    }
+
     function toggleStyleEditorPanel() {
       styleEditorOpen.value = !styleEditorOpen.value
     }
@@ -30,6 +35,7 @@ export const useAppStore = defineStore(
     }
 
     return {
+      darkModeOn,
       lang,
       layersOpen,
       isCatalogExpanded,
@@ -37,6 +43,7 @@ export const useAppStore = defineStore(
       setLang,
       setLayersOpen,
       setCatalogExpanded,
+      toggleDarkMode,
       toggleStyleEditorPanel,
       closeStyleEditorPanel,
     }

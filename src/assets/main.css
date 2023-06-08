@@ -11,7 +11,7 @@
     }
 
     main {
-        @apply h-full flex flex-row-reverse pt-16;
+        @apply h-full flex flex-row-reverse pt-16 dark:text-slate-200;
     }
 
     main > * {
@@ -19,7 +19,7 @@
     }
 
     header {
-        @apply shadow-lg absolute z-10 w-full bg-white dark:bg-slate-950;
+        @apply shadow-lg absolute z-10 w-full bg-white dark:bg-slate-950  dark:text-slate-200;
     }
 
     header > nav {
@@ -55,7 +55,7 @@
     }
 
     .rhino-side-bar {
-        @apply  w-10 border rounded-sm;
+        @apply  w-10 border rounded-sm dark:bg-slate-950;
     }
 
     .rhino-side-bar > * {
@@ -63,7 +63,7 @@
     }
 
     .rhino-side-bar > *.expanded {
-        @apply bg-slate-300 dark:bg-slate-800;
+        @apply bg-slate-300 dark:bg-slate-500;
     }
 
     .rhino-side-bar button {

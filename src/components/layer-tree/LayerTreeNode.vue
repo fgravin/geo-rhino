@@ -62,7 +62,7 @@ function toggleParent(node: LayerTreeNodeModel) {
       v-else-if="node.depth > 1 && !isMaxDepth"
       class="w-full text-left flex px-2 py-1.5 pl-2 truncate"
       :class="
-        node.expanded ? 'bg-secondary text-tertiary' : 'bg-white text-primary'
+        node.expanded ? 'bg-secondary text-tertiary' : 'text-primary'
       "
       :aria-expanded="node.expanded"
       @click="toggleParent(node)"

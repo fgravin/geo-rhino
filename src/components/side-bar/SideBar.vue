@@ -7,11 +7,12 @@ import { Cog8ToothIcon, InformationCircleIcon, MapPinIcon, PencilIcon, Square3St
 import { useAppStore } from '@/stores/app.store'
 import { useMapStore } from '@/stores/map.store'
 
+import DarkMode from './DarkMode.vue'
+
 const appStore = useAppStore()
 const mapStore = useMapStore()
 const nbSelectedLayers = computed(() => mapStore.layers.length)
 const { layersOpen: isLayersExpanded, isCatalogExpanded } = storeToRefs(appStore)
-const darkModeOn = ref(false)
 </script>
 
 <template>
@@ -48,10 +49,7 @@ const darkModeOn = ref(false)
             </button>
         </li>
         <li>
-            <button @click="() => darkModeOn = !darkModeOn">
-                <MoonIcon class="rhino-icon" v-if="!darkModeOn" />
-                <SunIcon class="rhino-icon" v-if="darkModeOn" />
-            </button>
+            <DarkMode />
         </li>
     </ul>
 </template>
