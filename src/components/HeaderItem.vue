@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useTranslation } from 'i18next-vue'
-import { GlobeAltIcon } from '@heroicons/vue/24/solid'
 
 import LanguageSelector from '@/components/language-selector/LanguageSelector.vue'
 import ThemeSelector from '@/components/theme-selector/ThemeSelector.vue'
@@ -10,7 +9,7 @@ const { t } = useTranslation()
 
 <template>
     <nav>
-        <div><GlobeAltIcon class="rhino-icon w-6 h-6" /> Geo Rhino</div>
+        <div><img src="public/logo-rhino.png" class="mr-2 w-7 h-7 inline-block" /> Geo Rhino</div>
         <ul class="flex gap-14">
             <li class="relative min-w-[150px]"><ThemeSelector /></li>
             <li><a href="#">{{ t('header.documentation.label') }}</a></li>
