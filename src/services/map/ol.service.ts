@@ -94,6 +94,7 @@ export default function useOpenLayers() {
       .getLayers()
       .getArray()
       .find(layer => layer.get('id') === layerId)
+
     if (layerToRemove) {
       olMap.removeLayer(layerToRemove)
     }
@@ -101,6 +102,7 @@ export default function useOpenLayers() {
 
   function reorderLayers(olMap: OlMap, layers: Layer[]) {
     const arrayLayers = olMap.getLayers().getArray()
+    
     layers.forEach((layer, idx) => {
       const baseLayer = arrayLayers.find(
         mapLayer => mapLayer.get('id') === layer.id

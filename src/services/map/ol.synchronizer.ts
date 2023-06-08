@@ -17,7 +17,7 @@ export class OlSynchronizer {
 
     watch(
       () => mapStore.layers,
-      layers => {
+      async layers => {
         const oldContext = {
           layers: this.previousLayers,
         }
@@ -41,9 +41,10 @@ export class OlSynchronizer {
 
         removedLayers.forEach(layer => openLayers.removeLayer(map, layer.id))
 
-        addedLayerComparisons.forEach(cmp =>
-          openLayers.addLayer(map, cmp.layer)
-        )
+        for (const cmp of addedLayerComparisons) {
+          await openLayers.addLayer(map, cmp.layer)
+        }
+        
         mutatedLayerComparisons.forEach(layer => {
           openLayers.setLayerOpacity(map, layer.id, layer.opacity as number)
         })
