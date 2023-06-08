@@ -43,7 +43,7 @@ jobs:
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build
-        run: npm run build-only --base=/geo-rhino/
+        run: npm run build-only -- --base=/geo-rhino/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
