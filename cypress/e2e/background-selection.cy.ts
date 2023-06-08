@@ -20,19 +20,19 @@ describe('Background selector', () => {
     cy.wait(1000) // Wait getCapabilities
     cy.window().then(window => {
       const layers = (<AUTWindowOlMap>window).olMap.getLayers().getArray()
-      expect(layers[0].get('id')).to.eq(55619)
+      expect(layers[0].get('id')).to.eq(175)
     })
 
     cy.get('[data-cy="selectedBg"]').find('button').click()
     cy.get('[data-cy="available-bgs"]')
       .find('button')
-      .filter('[title*="Carte nationale - gris"]')
+      .filter('[title*="ASIT VD - Fond couleur"]')
       .click()
     cy.wait(1000) // Wait getCapabilities
 
     cy.window().then(window => {
       const layers = (<AUTWindowOlMap>window).olMap.getLayers().getArray()
-      expect(layers[0].get('id')).to.eq(56086)
+      expect(layers[0].get('id')).to.eq(55619)
     })
   })
 })
