@@ -193,4 +193,12 @@
     .ol-zoom-in, .ol-zoom-out {
         @apply ol-control items-center;
     }
+
+    .ol-zoom-in {
+        @apply rounded-b-none;
+    }
+
+    .ol-zoom-out {
+        @apply rounded-t-none;
+    }
 }
