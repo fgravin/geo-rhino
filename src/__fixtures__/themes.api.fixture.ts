@@ -26085,4 +26085,4 @@ export const themesApiFixture = (): ConfigModel => ({
       }
   ],
   "errors": []
-})
+} as unknown as ConfigModel)

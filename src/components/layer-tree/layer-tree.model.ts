@@ -1,4 +1,4 @@
-import { LayerId } from '@/stores/map.store.model'
+import { type LayerId } from '@/stores/map.store.model'
 
 export type LayerTreeToggleProperty = 'checked' | 'expanded'
 

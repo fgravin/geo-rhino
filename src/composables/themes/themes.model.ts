@@ -23,15 +23,22 @@ export interface OgcServersConfigModel {
 export type Metadata = Partial<{
   is_queryable: boolean
   is_expanded: boolean
-  display_in_switcher: boolean
-  show_in_mobile: boolean
-  start_opacity: number
+  isExpanded?: boolean
+  isLegendExpanded?: boolean
+  disclaimer?: string
+  display_in_switcher?: boolean
+  show_in_mobile?: boolean
+  start_opacity?: number
+  opacity?: number
   bg_opacity: number
   max_dpi: number
   metadata_id: string
   attribution: string
+  legend: boolean
   legend_name: string
-  exclusion: string
+  legendImage?: string
+  exclusion?: string
+  exclusiveGroup?: boolean
   css: string
   bg_layer: string
   linked_layers: string[]
@@ -57,19 +64,24 @@ export type Metadata = Partial<{
   ol3d_options: {
     heightOffset: number
   }
-
   ol3d_type: string
   ogc_info_format: string
   ogc_info_srs: string
   ogc_query_layers: string[]
   hasRetina?: boolean
   thumbnail?: string
+  minResolution?: number
+  minQueryResolution?: number
+  maxResolution?: number
   maxQueryResolution?: number
+  minResolutionHint?: number
   metadataUrl?: string
+  timeAttribute?: string
   ogcServer?: string
   queryLayers?: string
   isChecked?: boolean
   printLayers?: string
+  directedFilterAttributes?: string[]
 }>
 
 export type LayerType = 'WMS' | 'WFS' | 'WMTS' | '3D'
@@ -90,8 +102,18 @@ export interface ThemeNodeModel {
   layer?: string
   children?: ThemeNodeModel[]
   mixed?: boolean
+  minResolutionHint?: number
+  maxResolutionHint?: number
   childLayers?: {
     name: string
+    minResolutionHint?: number
+    maxResolutionHint?: number
+    queryable?: boolean
   }[]
   functionalities?: {}
+  time?: {
+    maxValue?: string
+    minValue?: string
+    widget?: string
+  }
 }
