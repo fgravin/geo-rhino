@@ -7,6 +7,6 @@ export interface BgLayerDefaultsType {
 }
 
 export const BLANK_BACKGROUNDLAYER: IBackgroundLayer = {
-  name: 'asitvd.fond_couleur',
-  id: 55619,
+  name: 'OSM map WMS',
+  id: 175,
 }

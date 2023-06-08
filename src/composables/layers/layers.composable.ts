@@ -24,6 +24,7 @@ export default function useLayers() {
   }
 
   function initLayer(layer: Layer) {
+    const DEFAULT_OGC_SERVER_NAME = 'Main no WFS' // TODO: retrieve parent OGC server instead (this is a temp fix)
     const themeStore = useThemeStore()
     const { ogcServers } = storeToRefs(themeStore)
 
@@ -31,7 +32,7 @@ export default function useLayers() {
 
     if (layer.type === 'WMS') {
       if (ogcServers.value) {
-        const ogcServer = ogcServers.value[(layer.ogcServer ?? 'source for image/png')]
+        const ogcServer = ogcServers.value[(layer.ogcServer ?? DEFAULT_OGC_SERVER_NAME)]
 
         layer.url = ogcServer.url
         layer.urlWfs = ogcServer.urlWfs

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ShallowRef, shallowRef, computed } from 'vue'
+import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTranslation } from 'i18next-vue'
 
@@ -12,11 +12,6 @@ const { t } = useTranslation()
 const themeStore = useThemeStore()
 const themesService = useThemes()
 const { theme, themes } = storeToRefs(themeStore)
-
-const isOpen: ShallowRef<boolean> = shallowRef(false)
-const emit = defineEmits<{
-  (e: 'toggleThemesGrid', isOpen: boolean): void
-}>()
 const availableThemes = computed(() =>
   themes.value?.map(theme => ({
     label: t(theme.name),
@@ -26,13 +21,8 @@ const availableThemes = computed(() =>
 )
 const themeName = computed(() => (theme.value?.name || 'theme'))
 
-function toggleThemesGrid() {
-  emit('toggleThemesGrid', (isOpen.value = !isOpen.value))
-}
-
 function setTheme(themeName: string) {
   themesService.setTheme(themeName)
-  toggleThemesGrid()
 }
 </script>
 
