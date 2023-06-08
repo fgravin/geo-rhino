@@ -1,0 +1,11 @@
+{
+  "key.for.trad": "La trad",
+  "header.about.label": "About",
+  "header.documentation.label": "Documentation",
+  "header.blog.label": "Blog",
+  "header.login.label": "Login",
+  "header.signup.label": "Sign up",
+  "panel.title.catalog": "Catalog",
+  "panel.title.layers": "Layers",
+  "background-selector.tooltip": "Selection la couche de fond"
+}
