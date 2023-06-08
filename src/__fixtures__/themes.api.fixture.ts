@@ -11558,7 +11558,21 @@ export const themesApiFixture = (): ConfigModel => ({
             "dimensions": {},
             "type": "VectorTiles",
             "style": "https://geomapfish-demo-2-7.camptocamp.com/static/9ae51a7e9c9d47daaff3bda60169c213/mb_styles/osm_landuse.json"
-        }
+        },
+        {
+            "id": 55619,
+            "name": "asitvd.fond_couleur",
+            "metadata": {
+                "ogcServer": "source for image/png",
+                "thumbnail": "https://map.cartoriviera.ch/static/e9067bc986794c2bac9e50ed1bb70b1d/images/layers/bg_plan_asit_couleur.png"
+            },
+            "dimensions": {},
+            "type": "WMTS",
+            "url": "https://wmts.asit-asso.ch/wmts?SERVICE=WMTS&REQUEST=GetCapabilities",
+            "matrixSet": "2056",
+            "layer": "asitvd.fond_couleur",
+            "imageType": "image/png"
+        },
     ],
     "errors": []
 } as unknown as ConfigModel)
