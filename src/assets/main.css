@@ -147,7 +147,7 @@
     }
 
     .rhino-collapse {
-        @apply relative max-h-0 overflow-hidden duration-[.70s] transition-[max-height] ease-in-out;
+        @apply relative max-h-0 overflow-hidden;
     }
 
     .rhino-collapse.expanded {
