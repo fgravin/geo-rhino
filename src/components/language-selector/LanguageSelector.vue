@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import {computed, watch} from 'vue'
 import { useTranslation } from 'i18next-vue'
 import { storeToRefs } from 'pinia'
 
@@ -17,8 +17,11 @@ const availableLanguages = computed(() =>
   }))
 )
 
+watch(lang, (newVal) => {
+    i18next.changeLanguage(newVal)
+})
+
 function changeLanguages(lang: string) {
-  i18next.changeLanguage(lang)
   setLang(lang)
 }
 </script>
