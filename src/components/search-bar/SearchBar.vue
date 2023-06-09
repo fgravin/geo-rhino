@@ -6,6 +6,6 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
     <div class="rhino-search">
         <MagnifyingGlassIcon class="rhino-icon mr-2 -mt-[2px]" />
         Search:
-        <input type="text" />
+        <input type="text" aria-label="search"/>
     </div>
 </template>

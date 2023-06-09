@@ -32,13 +32,13 @@ function toggleParent(node: LayerTreeNodeModel) {
 
 <template>
   <div
-    class="mb-px"
+    class="mb-px text-sm"
     :class="node.depth > 1 ? 'ml-5' : ''"
-    v-if="isParent" key="node.id">    
+    v-if="isParent" key="node.id">
     <button
       v-if="node.depth === 1"
-      class="group node-1 w-full text-left flex px-2 py-1.5 uppercase bg-tertiary truncate"
-      :class="node.expanded ? 'text-primary' : 'text-secondary'"
+      aria-label="first level layer group"
+      class="group node-1 w-full text-left flex px-2 my-1.5 uppercase truncate items-center bg-slate-100 dark:bg-slate-800"
       :aria-expanded="node.expanded"
       @click="toggleParent(node)"
       :data-cy="`parentLayerLabel-${node.id}`"
@@ -60,10 +60,8 @@ function toggleParent(node: LayerTreeNodeModel) {
 
     <button
       v-else-if="node.depth > 1 && !isMaxDepth"
-      class="w-full text-left flex px-2 py-1.5 pl-2 truncate"
-      :class="
-        node.expanded ? 'bg-secondary text-tertiary' : 'text-primary'
-      "
+      aria-label="deeper level layer group"
+      class="w-full text-left flex px-2 my-1.5 pl-2 truncate items-center bg-slate-50 dark:bg-slate-900"
       :aria-expanded="node.expanded"
       @click="toggleParent(node)"
       :data-cy="`parentLayerLabel-${node.id}`"
@@ -72,7 +70,7 @@ function toggleParent(node: LayerTreeNodeModel) {
       <ChevronDownIcon v-if="node.expanded" class="rhino-icon mr-1" />
 
       <StopIcon v-if="!hasChildrenSelected" class="rhino-icon mr-1" />
-      <SolidStopIcon v-if="hasChildrenSelected" class="rhino-icon mr-1 text-blue-500" />
+      <SolidStopIcon v-if="hasChildrenSelected" class="rhino-icon mr-1 text-indigo-400" />
 
       <div class="grow">{{ label }}</div>
       <div class="leading-6">
@@ -99,17 +97,18 @@ function toggleParent(node: LayerTreeNodeModel) {
       ></layer-tree-node>
     </div>
   </div>
-  
-  <div v-else class="flex text-tertiary ml-7 pr-2">
+
+  <div v-else class="flex ml-7 mr-2">
     <button
       class="w-full text-left truncate"
-      :class="{ 'font-bold': node.checked }"
+      aria-label="toggle layer"
+      :class="{ 'text-indigo-700': node.checked }"
       @click="toggleLayer(node)"
       :data-cy="`layerLabel-${node.id}`"
       :title="label"
     >
       <StopIcon v-if="!node.checked" class="rhino-icon mr-1" />
-      <SolidStopIcon v-if="node.checked" class="rhino-icon mr-1 text-blue-500" />
+      <SolidStopIcon v-if="node.checked" class="rhino-icon mr-1 text-indigo-400" />
 
       <span class="ml-1 hover:underline">{{ label }}</span>
     </button>

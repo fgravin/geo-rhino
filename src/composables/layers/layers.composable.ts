@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 
 import type { Layer, LayerId } from '@/stores/map.store.model'
 import { useMapStore } from '@/stores/map.store'
-import { useThemeStore } from '@/stores/config.store'
+import { useConfigStore } from '@/stores/config.store'
 import useThemes from '@/composables/themes/themes.composable'
 
 const themes = useThemes()
@@ -25,7 +25,7 @@ export default function useLayers() {
 
   function initLayer(layer: Layer) {
     const DEFAULT_OGC_SERVER_NAME = 'Main no WFS' // TODO: retrieve parent OGC server instead (this is a temp fix)
-    const themeStore = useThemeStore()
+    const themeStore = useConfigStore()
     const { ogcServers } = storeToRefs(themeStore)
 
     layer.opacity = layer.previousOpacity = layer.metadata?.start_opacity ?? 1
@@ -40,7 +40,7 @@ export default function useLayers() {
         console.log(`Error: No OGC server for layer ${ layer.name }`)
       }
     }
-    
+
     return layer
   }
 
@@ -77,7 +77,7 @@ export default function useLayers() {
   }
 
   function toggleLayer(id: LayerId, show = true) {
-    const themeStore = useThemeStore()
+    const themeStore = useConfigStore()
     const mapStore = useMapStore()
 
     const layer = <Layer>themes.findById(id, themeStore.theme)

@@ -4,7 +4,7 @@ import { bgConfigFixture } from '@/__fixtures__/background.config.fixture'
 import useLayers from '@/composables/layers/layers.composable'
 import type { Layer } from '@/stores/map.store.model'
 import { useMapStore } from '@/stores/map.store'
-import { useThemeStore } from '@/stores/config.store'
+import { useConfigStore } from '@/stores/config.store'
 import {
   BLANK_BACKGROUNDLAYER,
   type BgLayerDefaultsType,
@@ -16,7 +16,7 @@ export default function useBackgroundLayer() {
   const mapStore = useMapStore()
   const layers = useLayers()
   const defaultSelectedBgId = computed(() => {
-    const theme_name = useThemeStore().theme?.name
+    const theme_name = useConfigStore().theme?.name
     if (theme_name) {
       const defaultBgLayers = bgConfigFixture()
         .bg_layer_theme_defaults as BgLayerDefaultsType

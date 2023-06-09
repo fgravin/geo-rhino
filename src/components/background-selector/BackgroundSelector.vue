@@ -5,7 +5,7 @@ import { useTranslation } from 'i18next-vue'
 
 import { type IBackgroundLayer } from '@/composables/background-layer/background-layer.model'
 import useBackgroundLayer from '@/composables/background-layer/background-layer.composable'
-import { useThemeStore } from '@/stores/config.store'
+import { useConfigStore } from '@/stores/config.store'
 import { useMapStore } from '@/stores/map.store'
 
 import BackgroundSelectorItem from './BackgroundSelectorItem.vue'
@@ -14,7 +14,7 @@ import type { ThemeNodeModel } from '@/composables/themes/themes.model'
 const { t } = useTranslation()
 const backgroundLayer = useBackgroundLayer()
 const mapStore = useMapStore()
-const themeStore = useThemeStore()
+const themeStore = useConfigStore()
 const { bgLayer: bgLayerContext } = storeToRefs(mapStore)
 const { bgLayers } = storeToRefs(themeStore)
 

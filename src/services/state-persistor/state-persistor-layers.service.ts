@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 
 import { useMapStore } from '@/stores/map.store'
 import { type Layer } from '@/stores/map.store.model'
-import { useThemeStore } from '@/stores/config.store'
+import { useConfigStore } from '@/stores/config.store'
 
 import {
   SP_KEY_LAYERS,
@@ -14,7 +14,7 @@ import { storageHelper } from './storage/storage.helper'
 
 class StatePersistorLayersService implements StatePersistorService {
   bootstrap() {
-    const themeStore = useThemeStore()
+    const themeStore = useConfigStore()
     let stop: WatchStopHandle
     // eslint-disable-next-line prefer-const
     stop = watchEffect(() => {

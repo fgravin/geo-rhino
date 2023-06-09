@@ -36,7 +36,7 @@ const buttonClasses = computed(
 </script>
 
 <template>
-  <button :title="buttonTitle" :class="buttonClasses" class="break-all text-xs"
+  <button :title="buttonTitle" :class="buttonClasses" class="break-all text-xs" aria-label="background"
     :style="{ 'background': `no-repeat url('${props.layer?.metadata?.thumbnail}')`, 'background-size': 'cover' }">
     {{ t(props.bgName) }}
   </button>

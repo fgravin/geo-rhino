@@ -4,7 +4,7 @@ import { statePersistorLangService } from '@/services/state-persistor/state-pers
 
 import BackgroundSelector from '@/components/background-selector/BackgroundSelector.vue'
 import LayerPanel from '@/components/layer-panel/LayerPanel.vue'
-import HeaderItem from './components/HeaderItem.vue'
+import HeaderItem from './components/header/HeaderItem.vue'
 import MapContainer from '@/components/map/MapContainer.vue'
 import SearchBar from '@/components/search-bar/SearchBar.vue'
 import SideBar from '@/components/side-bar/SideBar.vue'
@@ -32,6 +32,6 @@ statePersistorLangService.bootstrap()
     </main>
 
     <footer>
-    </footer>    
+    </footer>
   </div>
 </template>

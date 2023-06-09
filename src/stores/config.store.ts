@@ -6,7 +6,7 @@ import { type ConfigModel, type OgcServersConfigModel } from '@/composables/them
 
 const DEFAULT_THEME_NAME = 'Cadastre'
 
-export const useThemeStore = defineStore(
+export const useConfigStore = defineStore(
   'config',
   () => {
     const themesService = useThemes()
@@ -31,5 +31,5 @@ export const useThemeStore = defineStore(
 )
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useThemeStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useConfigStore, import.meta.hot))
 }

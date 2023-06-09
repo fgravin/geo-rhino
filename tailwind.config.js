@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
 module.exports = {
   darkMode: "class",
   content: [
@@ -11,7 +12,13 @@ module.exports = {
     }
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#475569',
+        secondary: '#0e7490',
+        tertiary: '#a78bfa'
+      }
+    },
   },
   plugins: [],
 }

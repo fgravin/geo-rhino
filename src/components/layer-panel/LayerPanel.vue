@@ -25,11 +25,11 @@ const { layersOpen: isLayersExpanded, isCatalogExpanded } = storeToRefs(appStore
     </h2>
     <CatalogTree v-if="isCatalogExpanded" />
 
-    <h2 class="text-lg ml-2 mt-4">
+    <h2 class="text-lg ml-2">
       <Square3Stack3DIcon class="rhino-icon mr-1" />
       {{ t('panel.title.layers') }}
       <span class="text-sm" v-if="nbSelectedLayers">({{ nbSelectedLayers }})</span>
     </h2>
-    <LayerManager data-cy="myLayers" v-if="isLayersExpanded" />
+    <LayerManager data-cy="myLayers" v-if="isLayersExpanded" class="text-sm" />
   </div>
 </template>

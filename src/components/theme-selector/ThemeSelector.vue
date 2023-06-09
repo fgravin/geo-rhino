@@ -4,12 +4,12 @@ import { storeToRefs } from 'pinia'
 import { useTranslation } from 'i18next-vue'
 
 import useThemes from '@/composables/themes/themes.composable'
-import { useThemeStore } from '@/stores/config.store'
+import { useConfigStore } from '@/stores/config.store'
 
 import DropdownList from '@/components/common/DropdownList.vue'
 
 const { t } = useTranslation()
-const themeStore = useThemeStore()
+const themeStore = useConfigStore()
 const themesService = useThemes()
 const { theme, themes } = storeToRefs(themeStore)
 const availableThemes = computed(() =>

@@ -1,6 +1,6 @@
 import type { ConfigModel, ThemeNodeModel } from './themes.model'
 import { themesApiFixture } from '@/__fixtures__/themes.api.fixture'
-import { useThemeStore } from '@/stores/config.store'
+import { useConfigStore } from '@/stores/config.store'
 import { type LayerId } from '@/stores/map.store.model'
 
 export default function useThemes() {
@@ -23,7 +23,7 @@ export default function useThemes() {
     name?: string,
     node?: ThemeNodeModel
   ): ThemeNodeModel | undefined {
-    const { theme } = useThemeStore()
+    const { theme } = useConfigStore()
 
     node = node || theme
     if ((id && node?.id === id) || (name && node?.name === name)) {
@@ -39,19 +39,19 @@ export default function useThemes() {
   }
 
   function findBgLayerById(id: LayerId) {
-    const { bgLayers } = useThemeStore()
+    const { bgLayers } = useConfigStore()
 
     return bgLayers.find(l => l.id === id)
   }
 
   function findBgLayerByName(name: string) {
-    const { bgLayers } = useThemeStore()
+    const { bgLayers } = useConfigStore()
 
     return bgLayers.find(l => l.name === name)
   }
 
   function setTheme(name: string) {
-    const { setTheme } = useThemeStore()
+    const { setTheme } = useConfigStore()
 
     setTheme(name)
   }

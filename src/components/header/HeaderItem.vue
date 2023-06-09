@@ -9,13 +9,13 @@ const { t } = useTranslation()
 
 <template>
     <nav>
-        <div><img src="/logo-rhino.png" class="mr-2 w-7 h-7 inline-block" /> Geo Rhino</div>
+        <div><img src="/logo-rhino.png" class="mr-2 w-7 h-7 inline-block" aria-label="logo" alt="geo-rhino"/> Geo Rhino</div>
         <ul class="flex gap-14">
             <li class="relative min-w-[150px]"><ThemeSelector /></li>
             <li><a href="#">{{ t('header.documentation.label') }}</a></li>
             <li><a href="#">{{ t('header.blog.label') }}</a></li>
         </ul>
-        <div class="flex gap-4">            
+        <div class="flex gap-4">
             <ul class="flex gap-4">
                 <li><a href="#">{{ t('header.login.label') }}</a></li>
                 <li><a class="rhino-btn primary" href="#">{{ t('header.signup.label') }}</a></li>

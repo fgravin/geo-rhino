@@ -39,6 +39,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutsideOpenBtn))
     <div class="h-full">
       <button
         type="button"
+        aria-label="dropdown"
         class="rhino-dropdown-btn uppercase"
         :class="isOpen ? 'expanded' : ''"
         :aria-expanded="isOpen"

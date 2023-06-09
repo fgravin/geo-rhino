@@ -18,33 +18,33 @@ const { layersOpen: isLayersExpanded, isCatalogExpanded } = storeToRefs(appStore
 <template>
     <ul class="rhino-side-bar">
         <li :class="isCatalogExpanded ? 'expanded' : ''">
-            <button @click="appStore.setCatalogExpanded(!isCatalogExpanded)">
+            <button @click="appStore.setCatalogExpanded(!isCatalogExpanded)" aria-label="toggle catalog">
                 <WalletIcon class="rhino-icon" />
             </button>
         </li>
         <li class="relative" :class="isLayersExpanded ? 'expanded' : ''">
-            <button @click="appStore.setLayersOpen(!isLayersExpanded)">
+            <button @click="appStore.setLayersOpen(!isLayersExpanded)" aria-label="toggle layer manager">
                 <span class="absolute bottom-0 right-0 text-[0.65rem]" v-if="nbSelectedLayers">({{ nbSelectedLayers }})</span>
                 <Square3Stack3DIcon class="rhino-icon" />
             </button>
         </li>
         <li>
-            <button @click="() => console.log('To be implemented')">
+            <button @click="() => console.log('To be implemented')" aria-label="draw">
                 <PencilIcon class="rhino-icon" />
             </button>
         </li>
         <li>
-            <button @click="() => console.log('To be implemented')">
+            <button @click="() => console.log('To be implemented')" aria-label="location">
                 <MapPinIcon class="rhino-icon" />
             </button>
         </li>
         <li>
-            <button @click="() => console.log('To be implemented')">
+            <button @click="() => console.log('To be implemented')" aria-label="settings">
                 <Cog8ToothIcon class="rhino-icon" />
             </button>
         </li>
         <li>
-            <button @click="() => console.log('To be implemented')">
+            <button @click="() => console.log('To be implemented')" aria-label="information">
                 <InformationCircleIcon class="rhino-icon" />
             </button>
         </li>

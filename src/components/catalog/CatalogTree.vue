@@ -3,7 +3,7 @@ import { type ShallowRef, shallowRef, watchEffect } from 'vue'
 
 import useLayers from '@/composables/layers/layers.composable'
 import { type ThemeNodeModel } from '@/composables/themes/themes.model'
-import { useThemeStore } from '@/stores/config.store'
+import { useConfigStore } from '@/stores/config.store'
 import { useMapStore } from '@/stores/map.store'
 import LayerTreeNode from '@/components/layer-tree/LayerTreeNode.vue'
 import { themesToLayerTree } from '@/components/layer-tree/layer-tree.mapper'
@@ -11,7 +11,7 @@ import type { LayerTreeNodeModel } from '@/components/layer-tree/layer-tree.mode
 import { layerTreeService } from '@/components/layer-tree/layer-tree.service'
 
 const mapStore = useMapStore()
-const themeStore = useThemeStore()
+const themeStore = useConfigStore()
 const layers = useLayers()
 const layerTree: ShallowRef<LayerTreeNodeModel | undefined> = shallowRef()
 

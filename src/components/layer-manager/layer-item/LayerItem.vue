@@ -83,11 +83,13 @@ function dispatchChangeOpacity() {
     <div class="w-full flex flex-nowrap items-start gap-x-2">
       <button
         class="rhino-icon cursor-move mt-1 ml-2"
+        aria-label="drag and drop layer"
         :class="draggableClassName"
         :title="txtDraggableLabel"
       ><Bars2Icon /></button>
       <button
-        :aria-expanded="props.isOpen"
+              aria-label="toggle layer"
+              :aria-expanded="props.isOpen"
         :aria-controls="`layer-manager-item-content-${props.layer.id}`"
         class="cursor-pointer grow text-left w-[70%] truncate"
         @click="onClickToggle"
@@ -95,7 +97,8 @@ function dispatchChangeOpacity() {
         {{ getLabel() }}
       </button>
       <button
-        class="mt-1 w-3.5 rhino-icon"
+              aria-label="toggle layer"
+              class="mt-1 w-3.5 rhino-icon"
         @click="onClickToggle"
         :aria-expanded="props.isOpen"
         :aria-controls="`layer-manager-item-content-${props.layer.id}`"
@@ -105,6 +108,7 @@ function dispatchChangeOpacity() {
       </button>
       <button
         class="mt-1 rhino-icon"
+        aria-label="remove layer"
         :title="txtRemoveLayer"
         @click="onClickRemove"
       ><XMarkIcon /></button>
@@ -120,6 +124,7 @@ function dispatchChangeOpacity() {
             layerName: t(props.layer.name),
           })
         "
+        aria-label="toggle layer opacity"
         class="w-5 rhino-icon"
         :class="opacity === 0 ? 'fa-eye-slash' : 'fa-eye'"
         @click="onToggleVisibility"

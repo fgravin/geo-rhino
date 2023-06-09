@@ -13,7 +13,7 @@ watch(darkModeOn, (newVal) => {
 </script>
 
 <template>
-    <button @click="appStore.toggleDarkMode()">
+    <button @click="appStore.toggleDarkMode()" aria-label="toggle dark mode">
         <MoonIcon class="rhino-icon" v-if="!darkModeOn" />
         <SunIcon class="rhino-icon" v-if="darkModeOn" />
     </button>
