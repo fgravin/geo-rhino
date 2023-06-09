@@ -45,7 +45,7 @@ export const useAppStore = defineStore(
       setCatalogExpanded,
       toggleDarkMode,
       toggleStyleEditorPanel,
-      closeStyleEditorPanel,
+      closeStyleEditorPanel
     }
   },
   {}

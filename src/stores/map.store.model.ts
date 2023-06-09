@@ -2,7 +2,7 @@ import type { LayerType, Metadata } from '@/services/themes/themes/themes.model'
 
 export enum LayerImageType {
   PNG = 'image/png',
-  JPG = 'image/jpeg',
+  JPG = 'image/jpeg'
 }
 
 export type LayerId = number | string

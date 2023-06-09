@@ -12,17 +12,14 @@ export function initProjections() {
       '+towgs84=-189.681,18.3463,-42.7695,-0.33746,-3.09264,2.53861,0.4598 ' +
       '+units=m +no_defs'
   )
-  proj4.defs("EPSG:2056" , '+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs +type=crs')
+  proj4.defs(
+    'EPSG:2056',
+    '+proj=somerc +lat_0=46.9524055555556 +lon_0=7.43958333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs +type=crs'
+  )
 
   register(proj4)
 
-  getProjection('EPSG:32632')?.setExtent([
-    166021.44, 0.0, 833978.55, 9329005.18,
-  ])
-  getProjection('EPSG:32631')?.setExtent([
-    166021.44, 0.0, 833978.55, 9329005.18,
-  ])
-  getProjection('EPSG:2169')?.setExtent([
-    48225.17, 56225.6, 105842.04, 139616.4,
-  ])
+  getProjection('EPSG:32632')?.setExtent([166021.44, 0.0, 833978.55, 9329005.18])
+  getProjection('EPSG:32631')?.setExtent([166021.44, 0.0, 833978.55, 9329005.18])
+  getProjection('EPSG:2169')?.setExtent([48225.17, 56225.6, 105842.04, 139616.4])
 }

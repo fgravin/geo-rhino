@@ -1,4 +1,4 @@
-import type { LayerImageType } from "@/stores/map.store.model"
+import type { LayerImageType } from '@/stores/map.store.model'
 
 export interface ConfigModel {
   ogcServers: {}

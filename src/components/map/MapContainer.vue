@@ -13,7 +13,7 @@ const map = useMap()
 const mapContainer = ref(null)
 const olMap = map.createMap()
 
-const DEFAULT_EXTENT = [2485071.58, 1074261.72, 2837119.8, 1299941.79];
+const DEFAULT_EXTENT = [2485071.58, 1074261.72, 2837119.8, 1299941.79]
 
 onMounted(() => {
   if (mapContainer.value) {

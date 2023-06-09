@@ -22,6 +22,6 @@ export default function useControl(ControlClass: typeof Control, options: any) {
   })
 
   return {
-    control,
+    control
   }
 }

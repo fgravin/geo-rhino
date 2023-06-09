@@ -20,7 +20,7 @@ const { t, onClickInfo } = useLayer(props.layer, { emit })
 const txtTitleLabel = computed(() =>
   t('Display informations for "{{layerName}}"', {
     ns: 'client',
-    layerName: getLabel(),
+    layerName: getLabel()
   })
 )
 
@@ -31,11 +31,7 @@ function getLabel() {
 
 <template>
   <span class="rhino-layer-manager-item mt-2.5">
-    <button
-      class="fa fa-info w-3"
-      :title="txtTitleLabel"
-      @click="onClickInfo"
-    ></button>
+    <button class="fa fa-info w-3" :title="txtTitleLabel" @click="onClickInfo"></button>
     <span class="flex-1 text-left cursor-default">{{ getLabel() }}</span>
     <button
       v-if="showEditButton"

@@ -5,10 +5,7 @@ import { useMapStore } from '@/stores/map.store'
 import { type Layer } from '@/stores/map.store.model'
 import { useConfigStore } from '@/stores/config.store'
 
-import {
-  SP_KEY_LAYERS,
-  type StatePersistorService,
-} from './state-persistor.model'
+import { SP_KEY_LAYERS, type StatePersistorService } from './state-persistor.model'
 import { storageLayerMapper } from './state-persistor-layer.mapper'
 import { storageHelper } from './storage/storage.helper'
 
@@ -34,11 +31,7 @@ class StatePersistorLayersService implements StatePersistorService {
       layers,
       (value, oldValue) => {
         if (oldValue !== value) {
-          storageHelper.setValue(
-            SP_KEY_LAYERS,
-            value,
-            storageLayerMapper.layersToLayerIds
-          )
+          storageHelper.setValue(SP_KEY_LAYERS, value, storageLayerMapper.layersToLayerIds)
         }
       },
       { immediate: true }
@@ -47,12 +40,9 @@ class StatePersistorLayersService implements StatePersistorService {
 
   restore() {
     const mapStore = useMapStore()
-    const layers = storageHelper.getValue(
-      SP_KEY_LAYERS,
-      storageLayerMapper.layerIdsToLayers
-    )
+    const layers = storageHelper.getValue(SP_KEY_LAYERS, storageLayerMapper.layerIdsToLayers)
 
-    mapStore.addLayers(...((layers?.filter(layer => layer) as Layer[]) || []))
+    mapStore.addLayers(...((layers?.filter((layer) => layer) as Layer[]) || []))
   }
 }
 

@@ -7,7 +7,7 @@ import { useMapStore } from '@/stores/map.store'
 import { useConfigStore } from '@/stores/config.store'
 import {
   BLANK_BACKGROUNDLAYER,
-  type BgLayerDefaultsType,
+  type BgLayerDefaultsType
 } from '@/composables/background-layer/background-layer.model'
 import useThemes from '@/composables/themes/themes.composable'
 
@@ -18,8 +18,7 @@ export default function useBackgroundLayer() {
   const defaultSelectedBgId = computed(() => {
     const theme_name = useConfigStore().theme?.name
     if (theme_name) {
-      const defaultBgLayers = bgConfigFixture()
-        .bg_layer_theme_defaults as BgLayerDefaultsType
+      const defaultBgLayers = bgConfigFixture().bg_layer_theme_defaults as BgLayerDefaultsType
       return defaultBgLayers[theme_name] || getDefaultSelectedId()
     }
     return getDefaultSelectedId()
@@ -60,6 +59,6 @@ export default function useBackgroundLayer() {
     getBgLayersFromConfig,
     getNullId,
     getDefaultSelectedId,
-    defaultSelectedBgId,
+    defaultSelectedBgId
   }
 }

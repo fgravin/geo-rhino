@@ -1,8 +1,5 @@
 import type { Layer, LayerId } from '@/stores/map.store.model'
-import type {
-  LayerTreeNodeModel,
-  LayerTreeToggleProperty,
-} from './layer-tree.model'
+import type { LayerTreeNodeModel, LayerTreeToggleProperty } from './layer-tree.model'
 
 export class LayerTreeService {
   toggleNode(
@@ -13,33 +10,28 @@ export class LayerTreeService {
     if (node?.id === id) {
       return {
         ...node,
-        [propertyName]: !node[propertyName],
+        [propertyName]: !node[propertyName]
       }
     } else {
       return {
         ...node,
-        children: node.children?.map(child =>
-          this.toggleNode(id, child, propertyName)
-        ),
+        children: node.children?.map((child) => this.toggleNode(id, child, propertyName))
       }
     }
   }
 
-  updateLayers(
-    node: LayerTreeNodeModel,
-    layers: Layer[] | undefined
-  ): LayerTreeNodeModel {
+  updateLayers(node: LayerTreeNodeModel, layers: Layer[] | undefined): LayerTreeNodeModel {
     const { id } = node
     if (node.children) {
       return {
         ...node,
-        children: node.children.map(child => this.updateLayers(child, layers)),
+        children: node.children.map((child) => this.updateLayers(child, layers))
       }
     } else {
-      const checked = !!layers?.find(l => l.id === id)
+      const checked = !!layers?.find((l) => l.id === id)
       return {
         ...node,
-        checked,
+        checked
       }
     }
   }

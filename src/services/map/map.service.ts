@@ -1,11 +1,7 @@
 import OlMap from 'ol/Map'
 import OlView from 'ol/View'
 
-import type {
-  Layer,
-  LayerComparison,
-  MapContext,
-} from '@/stores/map.store.model'
+import type { Layer, LayerComparison, MapContext } from '@/stores/map.store.model'
 
 export const PROJECTION_WEBMERCATOR = 'EPSG:3857'
 export const PROJECTION_WGS84 = 'EPSG:4326'
@@ -26,7 +22,7 @@ export default function useMap() {
         multiWorld: false,
         projection: PROJECTION_LV95
       }),
-      controls: [],
+      controls: []
     })
 
     return map
@@ -37,18 +33,15 @@ export default function useMap() {
   }
 
   function hasLayer(context: MapContext, layer: Layer) {
-    return context.layers?.some(l => equalsLayer(layer, l))
+    return context.layers?.some((l) => equalsLayer(layer, l))
   }
 
   function layerHasChanged(oldContext: MapContext | null, layer: Layer) {
-    const oldLayer = oldContext?.layers?.find(l => l.id === layer.id)
+    const oldLayer = oldContext?.layers?.find((l) => l.id === layer.id)
     return oldLayer === layer
   }
 
-  function contextHasChanged(
-    newContext: MapContext,
-    oldContext: MapContext | null
-  ) {
+  function contextHasChanged(newContext: MapContext, oldContext: MapContext | null) {
     return !(
       oldContext === null ||
       !('layers' in newContext) ||
@@ -63,8 +56,7 @@ export default function useMap() {
     newContext: MapContext,
     oldContext: MapContext | null
   ): LayerComparison[] {
-    if (!('layers' in newContext) || typeof newContext.layers === 'undefined')
-      return []
+    if (!('layers' in newContext) || typeof newContext.layers === 'undefined') return []
     if (oldContext === null || !('layers' in oldContext)) {
       return newContext.layers.map((layer, position) => ({ layer, position }))
     }
@@ -77,21 +69,17 @@ export default function useMap() {
               ...addedLayers,
               {
                 layer,
-                position: i,
-              },
+                position: i
+              }
             ],
       [] as LayerComparison[]
     )
   }
 
-  function getRemovedLayers(
-    newContext: MapContext,
-    oldContext: MapContext | null
-  ): Layer[] {
+  function getRemovedLayers(newContext: MapContext, oldContext: MapContext | null): Layer[] {
     if (contextHasChanged(newContext, oldContext)) {
       return ((oldContext as MapContext).layers as Layer[]).reduce(
-        (prev, layer) =>
-          hasLayer(newContext, layer) ? prev : [...prev, layer],
+        (prev, layer) => (hasLayer(newContext, layer) ? prev : [...prev, layer]),
         [] as Layer[]
       )
     }
@@ -99,14 +87,10 @@ export default function useMap() {
     return []
   }
 
-  function getMutatedLayers(
-    newContext: MapContext,
-    oldContext: MapContext | null
-  ): Layer[] {
+  function getMutatedLayers(newContext: MapContext, oldContext: MapContext | null): Layer[] {
     if (contextHasChanged(newContext, oldContext)) {
       return (newContext.layers as Layer[]).reduce(
-        (prev, layer) =>
-          !layerHasChanged(oldContext, layer) ? prev : [...prev, layer],
+        (prev, layer) => (!layerHasChanged(oldContext, layer) ? prev : [...prev, layer]),
         [] as Layer[]
       )
     }
@@ -123,6 +107,6 @@ export default function useMap() {
     contextHasChanged,
     getAddedLayers,
     getRemovedLayers,
-    getMutatedLayers,
+    getMutatedLayers
   }
 }

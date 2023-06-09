@@ -12,11 +12,7 @@ export default class ZoomToExtent extends OlControlZoomToExtent {
   }
 
   override handleZoomToExtent() {
-    if (
-      this.ol3dm &&
-      this.ol3dm.luxCameraExtentInRadians &&
-      this.ol3dm.is3dEnabled()
-    ) {
+    if (this.ol3dm && this.ol3dm.luxCameraExtentInRadians && this.ol3dm.is3dEnabled()) {
       // TODO: Handle 3D to map
       // const rectangle = new Cesium.Rectangle(...this.ol3dm.luxCameraExtentInRadians)
       // const offset = 2000

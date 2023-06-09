@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, watch} from 'vue'
+import { computed, watch } from 'vue'
 import { useTranslation } from 'i18next-vue'
 import { storeToRefs } from 'pinia'
 
@@ -10,15 +10,15 @@ const { i18next, t } = useTranslation()
 const { setLang } = useAppStore()
 const { lang } = storeToRefs(useAppStore())
 const availableLanguages = computed(() =>
-  ['en', 'fr'].map(lang => ({
+  ['en', 'fr'].map((lang) => ({
     label: t(lang),
     value: lang,
-    ariaLabel: t(`Changer de langue : {{lang}}`),
+    ariaLabel: t(`Changer de langue : {{lang}}`)
   }))
 )
 
 watch(lang, (newVal) => {
-    i18next.changeLanguage(newVal)
+  i18next.changeLanguage(newVal)
 })
 
 function changeLanguages(lang: string) {
@@ -33,6 +33,7 @@ function changeLanguages(lang: string) {
       :options="availableLanguages"
       :placeholder="lang"
       v-model="lang"
-      @change="changeLanguages" />
+      @change="changeLanguages"
+    />
   </div>
 </template>

@@ -19,7 +19,7 @@ const isParent = !!props.node.children
 const isRoot = props.node.depth === 0
 const isMaxDepth = props.node.depth >= 10
 const label = computed(() => t(props.node.name, { ns: 'client' }))
-const hasChildrenSelected = computed(() => props.node.children?.find(child => child.checked))
+const hasChildrenSelected = computed(() => props.node.children?.find((child) => child.checked))
 
 function toggleLayer(node: LayerTreeNodeModel) {
   emit('toggleLayer', node)
@@ -31,10 +31,7 @@ function toggleParent(node: LayerTreeNodeModel) {
 </script>
 
 <template>
-  <div
-    class="mb-px text-sm"
-    :class="node.depth > 1 ? 'ml-5' : ''"
-    v-if="isParent" key="node.id">
+  <div class="mb-px text-sm" :class="node.depth > 1 ? 'ml-5' : ''" v-if="isParent" key="node.id">
     <button
       v-if="node.depth === 1"
       aria-label="first level layer group"
@@ -47,7 +44,7 @@ function toggleParent(node: LayerTreeNodeModel) {
       <ChevronDownIcon v-if="node.expanded" class="rhino-icon mr-1" />
 
       <StopIcon v-if="!hasChildrenSelected" class="rhino-icon mr-1" />
-      <SolidStopIcon v-if="hasChildrenSelected" class="rhino-icon mr-1 text-blue-500" />
+      <SolidStopIcon v-if="hasChildrenSelected" class="rhino-icon mr-1 text-indigo-400" />
 
       <span class="w-48">{{ label }}</span>
       <div class="leading-6">
@@ -74,19 +71,13 @@ function toggleParent(node: LayerTreeNodeModel) {
 
       <div class="grow">{{ label }}</div>
       <div class="leading-6">
-        <div
-          class="fa-sharp fa-solid"
-          :class="node.expanded ? 'fa-minus' : 'fa-plus'"
-        ></div>
+        <div class="fa-sharp fa-solid" :class="node.expanded ? 'fa-minus' : 'fa-plus'"></div>
       </div>
     </button>
 
     <div
       v-if="!isMaxDepth"
-      :class="[
-        { 'rhino-collapse': !isRoot },
-        { expanded: !isRoot && node.expanded },
-      ]"
+      :class="[{ 'rhino-collapse': !isRoot }, { expanded: !isRoot && node.expanded }]"
     >
       <layer-tree-node
         v-for="child in node.children"

@@ -31,7 +31,6 @@ statePersistorLangService.bootstrap()
       </div>
     </main>
 
-    <footer>
-    </footer>
+    <footer></footer>
   </div>
 </template>

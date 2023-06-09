@@ -23,14 +23,14 @@ onMounted(() => {
       ghostClass: 'rhino-sortable-ghost',
       sort: true,
       handle: `.${draggableClassName}`,
-      onSort: sortMethod,
+      onSort: sortMethod
     })
   }
 })
 
 function sortMethod(event: SortableEvent) {
   const items = event.to.children
-  mapStore.reorderLayers([...items].map(val => Number(val.id)).reverse())
+  mapStore.reorderLayers([...items].map((val) => Number(val.id)).reverse())
 }
 
 function changeOpacityLayer(layer: Layer, opacity: number) {

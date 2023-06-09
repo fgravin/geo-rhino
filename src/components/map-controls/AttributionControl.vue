@@ -11,7 +11,7 @@ const props = withDefaults(
   {
     className: 'geo-rhino',
     collapsed: false,
-    collapsible: false,
+    collapsible: false
   }
 )
 

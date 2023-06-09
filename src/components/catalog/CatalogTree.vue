@@ -20,8 +20,7 @@ watchEffect(updateLayerTree)
 function updateLayerTree() {
   if (themeStore.theme && mapStore.layers) {
     const treeModel =
-      layerTree.value &&
-      (layerTree.value.id as unknown as number) === themeStore.theme?.id
+      layerTree.value && (layerTree.value.id as unknown as number) === themeStore.theme?.id
         ? layerTree.value
         : themesToLayerTree(themeStore.theme as ThemeNodeModel)
 

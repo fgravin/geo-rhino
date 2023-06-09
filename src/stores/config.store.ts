@@ -13,13 +13,13 @@ export const useConfigStore = defineStore(
     const config: ShallowRef<ConfigModel | undefined> = shallowRef()
     const themeName = ref(DEFAULT_THEME_NAME)
     const themes = computed(() => config.value?.themes)
-    const theme = computed(() =>
-      themes.value?.find(theme => theme.name === themeName.value)
-    )
+    const theme = computed(() => themes.value?.find((theme) => theme.name === themeName.value))
     const bgLayers = computed(() => config.value?.background_layers || [])
-    const ogcServers: ShallowRef<OgcServersConfigModel | undefined> = computed(() => config.value?.ogcServers)
+    const ogcServers: ShallowRef<OgcServersConfigModel | undefined> = computed(
+      () => config.value?.ogcServers
+    )
 
-    themesService.fetchThemes().then(response => (config.value = response))
+    themesService.fetchThemes().then((response) => (config.value = response))
 
     function setTheme(name: string) {
       themeName.value = name

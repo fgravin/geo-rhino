@@ -4,17 +4,11 @@ import { useConfigStore } from '@/stores/config.store'
 import { type LayerId } from '@/stores/map.store.model'
 
 export default function useThemes() {
-  function findById(
-    id: LayerId,
-    node?: ThemeNodeModel
-  ): ThemeNodeModel | undefined {
+  function findById(id: LayerId, node?: ThemeNodeModel): ThemeNodeModel | undefined {
     return findByIdOrName(id, undefined, node)
   }
 
-  function findByName(
-    name: string,
-    node?: ThemeNodeModel
-  ): ThemeNodeModel | undefined {
+  function findByName(name: string, node?: ThemeNodeModel): ThemeNodeModel | undefined {
     return findByIdOrName(undefined, name, node)
   }
 
@@ -41,13 +35,13 @@ export default function useThemes() {
   function findBgLayerById(id: LayerId) {
     const { bgLayers } = useConfigStore()
 
-    return bgLayers.find(l => l.id === id)
+    return bgLayers.find((l) => l.id === id)
   }
 
   function findBgLayerByName(name: string) {
     const { bgLayers } = useConfigStore()
 
-    return bgLayers.find(l => l.name === name)
+    return bgLayers.find((l) => l.name === name)
   }
 
   function setTheme(name: string) {
@@ -57,7 +51,7 @@ export default function useThemes() {
   }
 
   async function fetchThemes(): Promise<ConfigModel> {
-    return new Promise(resolve => resolve(themesApiFixture()))
+    return new Promise((resolve) => resolve(themesApiFixture()))
   }
 
   return {
@@ -66,6 +60,6 @@ export default function useThemes() {
     findBgLayerById,
     findBgLayerByName,
     setTheme,
-    fetchThemes,
+    fetchThemes
   }
 }

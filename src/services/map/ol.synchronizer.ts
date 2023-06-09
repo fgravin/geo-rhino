@@ -17,35 +17,26 @@ export class OlSynchronizer {
 
     watch(
       () => mapStore.layers,
-      async layers => {
+      async (layers) => {
         const oldContext = {
-          layers: this.previousLayers,
+          layers: this.previousLayers
         }
         const newContext = {
-          layers,
+          layers
         }
-        const removedLayers = mapService.getRemovedLayers(
-          newContext,
-          oldContext
-        )
+        const removedLayers = mapService.getRemovedLayers(newContext, oldContext)
 
-        const addedLayerComparisons = mapService.getAddedLayers(
-          newContext,
-          oldContext
-        )
+        const addedLayerComparisons = mapService.getAddedLayers(newContext, oldContext)
 
-        const mutatedLayerComparisons = mapService.getMutatedLayers(
-          newContext,
-          oldContext
-        )
+        const mutatedLayerComparisons = mapService.getMutatedLayers(newContext, oldContext)
 
-        removedLayers.forEach(layer => openLayers.removeLayer(map, layer.id))
+        removedLayers.forEach((layer) => openLayers.removeLayer(map, layer.id))
 
         for (const cmp of addedLayerComparisons) {
           await openLayers.addLayer(map, cmp.layer)
         }
-        
-        mutatedLayerComparisons.forEach(layer => {
+
+        mutatedLayerComparisons.forEach((layer) => {
           openLayers.setLayerOpacity(map, layer.id, layer.opacity as number)
         })
 
@@ -59,9 +50,7 @@ export class OlSynchronizer {
 
     watch(
       () => mapStore.bgLayer,
-      bgLayer =>
-        bgLayer !== undefined &&
-        openLayers.setBgLayer(map, bgLayer)
+      (bgLayer) => bgLayer !== undefined && openLayers.setBgLayer(map, bgLayer)
     )
   }
 }

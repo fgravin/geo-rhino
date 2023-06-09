@@ -8,5 +8,5 @@ export interface BgLayerDefaultsType {
 
 export const BLANK_BACKGROUNDLAYER: IBackgroundLayer = {
   name: 'OSM map WMS',
-  id: 175,
+  id: 175
 }

@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { computed, type ShallowRef, shallowRef } from 'vue'
-import { Bars2Icon, EllipsisVerticalIcon, EllipsisHorizontalIcon, XMarkIcon } from '@heroicons/vue/24/solid'
+import {
+  Bars2Icon,
+  EllipsisVerticalIcon,
+  EllipsisHorizontalIcon,
+  XMarkIcon
+} from '@heroicons/vue/24/solid'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/24/outline'
 
 import { useLayer } from '@/composables/layer'
@@ -11,18 +16,10 @@ const props = defineProps<{
   draggableClassName: string
   isOpen: boolean
 }>()
-const emit = defineEmits([
-  'clickInfo',
-  'clickEdit',
-  'changeOpacity',
-  'clickToggle',
-  'clickRemove',
-])
+const emit = defineEmits(['clickInfo', 'clickEdit', 'changeOpacity', 'clickToggle', 'clickRemove'])
 const { t, getLabel, onClickInfo } = useLayer(props.layer as Layer, { emit })
 
-const opacity: ShallowRef<number | undefined> = shallowRef(
-  (props.layer?.opacity ?? 1) * 100
-)
+const opacity: ShallowRef<number | undefined> = shallowRef((props.layer?.opacity ?? 1) * 100)
 const prevOpacity: ShallowRef<number | undefined> = shallowRef(
   ((props.layer?.previousOpacity ?? opacity.value) as number) * 100
 )
@@ -30,19 +27,19 @@ const prevOpacity: ShallowRef<number | undefined> = shallowRef(
 const txtDraggableLabel = computed(() =>
   t('Sort "{{layerName}}" in the list', {
     ns: 'client',
-    layerName: getLabel(),
+    layerName: getLabel()
   })
 )
 const txtTitleLabel = computed(() =>
   t('Display informations for "{{layerName}}"', {
     ns: 'client',
-    layerName: getLabel(),
+    layerName: getLabel()
   })
 )
 const txtRemoveLayer = computed(() =>
   t('Remove layer "{{layerName}}"', {
     ns: 'client',
-    layerName: getLabel(),
+    layerName: getLabel()
   })
 )
 
@@ -86,10 +83,12 @@ function dispatchChangeOpacity() {
         aria-label="drag and drop layer"
         :class="draggableClassName"
         :title="txtDraggableLabel"
-      ><Bars2Icon /></button>
+      >
+        <Bars2Icon />
+      </button>
       <button
-              aria-label="toggle layer"
-              :aria-expanded="props.isOpen"
+        aria-label="toggle layer"
+        :aria-expanded="props.isOpen"
         :aria-controls="`layer-manager-item-content-${props.layer.id}`"
         class="cursor-pointer grow text-left w-[70%] truncate"
         @click="onClickToggle"
@@ -97,8 +96,8 @@ function dispatchChangeOpacity() {
         {{ getLabel() }}
       </button>
       <button
-              aria-label="toggle layer"
-              class="mt-1 w-3.5 rhino-icon"
+        aria-label="toggle layer"
+        class="mt-1 w-3.5 rhino-icon"
         @click="onClickToggle"
         :aria-expanded="props.isOpen"
         :aria-controls="`layer-manager-item-content-${props.layer.id}`"
@@ -111,7 +110,9 @@ function dispatchChangeOpacity() {
         aria-label="remove layer"
         :title="txtRemoveLayer"
         @click="onClickRemove"
-      ><XMarkIcon /></button>
+      >
+        <XMarkIcon />
+      </button>
     </div>
     <div
       class="rhino-layer-manager-item-content"
@@ -121,7 +122,7 @@ function dispatchChangeOpacity() {
       <button
         :title="
           t('Toggle layer opacity for {{layerName}}', {
-            layerName: t(props.layer.name),
+            layerName: t(props.layer.name)
           })
         "
         aria-label="toggle layer opacity"
@@ -141,9 +142,7 @@ function dispatchChangeOpacity() {
         step="25"
         @change="onChangeOpacity"
         class="m-2.5 w-16 h-[5px] rounded-lg appearance-none cursor-pointer"
-        :aria-label="
-          t('Change opacity for {{ layerName }}', { layerName: getLabel() })
-        "
+        :aria-label="t('Change opacity for {{ layerName }}', { layerName: getLabel() })"
       />
     </div>
   </div>

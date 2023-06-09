@@ -15,9 +15,7 @@ export default function useLayers() {
         .concat(JSON.parse(exclusionB))
         .sort((a: number, b: number) => a - b)
 
-      return concat.some(
-        (element, index, array) => index && element === array[index - 1]
-      )
+      return concat.some((element, index, array) => index && element === array[index - 1])
     } catch (e) {
       return false
     }
@@ -32,12 +30,12 @@ export default function useLayers() {
 
     if (layer.type === 'WMS') {
       if (ogcServers.value) {
-        const ogcServer = ogcServers.value[(layer.ogcServer ?? DEFAULT_OGC_SERVER_NAME)]
+        const ogcServer = ogcServers.value[layer.ogcServer ?? DEFAULT_OGC_SERVER_NAME]
 
         layer.url = ogcServer.url
         layer.urlWfs = ogcServer.urlWfs
       } else {
-        console.log(`Error: No OGC server for layer ${ layer.name }`)
+        console.log(`Error: No OGC server for layer ${layer.name}`)
       }
     }
 
@@ -50,26 +48,21 @@ export default function useLayers() {
     }
 
     const mapStore = useMapStore()
-    const excludedLayers = mapStore.layers.filter(_layer =>
-      hasIntersect(
-        layer?.metadata?.exclusion as string,
-        _layer?.metadata?.exclusion as string
-      )
+    const excludedLayers = mapStore.layers.filter((_layer) =>
+      hasIntersect(layer?.metadata?.exclusion as string, _layer?.metadata?.exclusion as string)
     )
 
     if (excludedLayers.length > 0) {
-      mapStore.removeLayers(...excludedLayers.map(_layer => _layer.id))
+      mapStore.removeLayers(...excludedLayers.map((_layer) => _layer.id))
 
       alert(
         i18next.t(
           'The layer <b>{{layersToRemove}}</b> has been removed because it cannot be displayed while the layer <b>{{layer}}</b> is displayed',
           {
             count: excludedLayers.length,
-            layersToRemove: excludedLayers
-              .map(_layer => i18next.t(_layer.name))
-              .join(', '),
+            layersToRemove: excludedLayers.map((_layer) => i18next.t(_layer.name)).join(', '),
             layer: i18next.t(layer.name),
-            ns: 'client',
+            ns: 'client'
           }
         )
       )
@@ -92,10 +85,8 @@ export default function useLayers() {
 
         mapStore.addLayers(
           initLayer(layer),
-          ...linkedLayers.map(layerId =>
-            initLayer(
-              themes.findById(parseInt(layerId, 10)) as unknown as Layer
-            )
+          ...linkedLayers.map((layerId) =>
+            initLayer(themes.findById(parseInt(layerId, 10)) as unknown as Layer)
           )
         )
       }
@@ -105,6 +96,6 @@ export default function useLayers() {
   return {
     initLayer,
     handleExclusionLayers,
-    toggleLayer,
+    toggleLayer
   }
 }

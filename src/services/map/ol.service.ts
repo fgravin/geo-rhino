@@ -3,7 +3,7 @@ import ImageLayer from 'ol/layer/Image'
 import TileLayer from 'ol/layer/Tile'
 import type OlMap from 'ol/Map'
 import { ImageWMS, WMTS } from 'ol/source'
-import { optionsFromCapabilities, type Options } from 'ol/source/WMTS';
+import { optionsFromCapabilities, type Options } from 'ol/source/WMTS'
 import WMTSCapabilities from 'ol/format/WMTSCapabilities'
 import { get as getProjection, transformExtent } from 'ol/proj'
 
@@ -15,19 +15,17 @@ function createWmsLayer(layer: Layer): ImageLayer<ImageWMS> {
   const olLayer = new ImageLayer({
     properties: {
       label: name,
-      id,
+      id
     },
     source: new ImageWMS({
       url: url,
       serverType: 'mapserver',
       params: {
         FORMAT: imageType,
-        LAYERS: layers,
+        LAYERS: layers
       },
-      ...((url !== undefined && url !== null)
-        ? { crossOrigin: 'anonymous' }
-        : {}),
-    }),
+      ...(url !== undefined && url !== null ? { crossOrigin: 'anonymous' } : {})
+    })
   })
 
   return olLayer
@@ -41,7 +39,7 @@ async function createWmtsLayer(layer: Layer): Promise<TileLayer<WMTS>> {
   if (layer.url) {
     const response = await fetch(layer.url)
     const text = await response.text()
-    const capabilities = (new WMTSCapabilities()).read(text)
+    const capabilities = new WMTSCapabilities().read(text)
 
     optionsWMTS = optionsFromCapabilities(capabilities, { layer: layer.name, projection })
   }
@@ -51,7 +49,7 @@ async function createWmtsLayer(layer: Layer): Promise<TileLayer<WMTS>> {
     source: optionsWMTS ? new WMTS(optionsWMTS) : undefined,
     properties: {
       label: name,
-      id,
+      id
     }
   })
 
@@ -61,7 +59,7 @@ async function createWmtsLayer(layer: Layer): Promise<TileLayer<WMTS>> {
 export default function useOpenLayers() {
   async function createLayer(spec: Layer): Promise<ImageLayer<ImageWMS> | TileLayer<WMTS>> {
     let layer
-    
+
     switch (spec.type) {
       case 'WMS':
         layer = createWmsLayer(spec)
@@ -93,7 +91,7 @@ export default function useOpenLayers() {
     const layerToRemove = olMap
       .getLayers()
       .getArray()
-      .find(layer => layer.get('id') === layerId)
+      .find((layer) => layer.get('id') === layerId)
 
     if (layerToRemove) {
       olMap.removeLayer(layerToRemove)
@@ -102,11 +100,9 @@ export default function useOpenLayers() {
 
   function reorderLayers(olMap: OlMap, layers: Layer[]) {
     const arrayLayers = olMap.getLayers().getArray()
-    
+
     layers.forEach((layer, idx) => {
-      const baseLayer = arrayLayers.find(
-        mapLayer => mapLayer.get('id') === layer.id
-      )
+      const baseLayer = arrayLayers.find((mapLayer) => mapLayer.get('id') === layer.id)
       baseLayer?.setZIndex(idx + 1)
     })
   }
@@ -115,27 +111,19 @@ export default function useOpenLayers() {
     const layer = olMap
       .getLayers()
       .getArray()
-      .find(layer => layer.get('id') === layerId)
+      .find((layer) => layer.get('id') === layerId)
     if (layer) layer.setOpacity(opacity)
   }
 
-  function applyOnBgLayer(
-    olMap: OlMap,
-    callbackFunction: (bgLayer: BaseLayer) => void
-  ) {
+  function applyOnBgLayer(olMap: OlMap, callbackFunction: (bgLayer: BaseLayer) => void) {
     const mapLayers = olMap.getLayers()
-    const bgLayer = mapLayers.getArray().find(layer => layer.getZIndex() === -1)
+    const bgLayer = mapLayers.getArray().find((layer) => layer.getZIndex() === -1)
     if (bgLayer) callbackFunction(bgLayer)
   }
-  
-  async function setBgLayer(
-    olMap: OlMap,
-    bgLayer: Layer | null
-  ) {
+
+  async function setBgLayer(olMap: OlMap, bgLayer: Layer | null) {
     const mapLayers = olMap.getLayers()
-    const currentBgLayerPos = mapLayers
-      .getArray()
-      .findIndex(layer => layer.getZIndex() === -1)
+    const currentBgLayerPos = mapLayers.getArray().findIndex((layer) => layer.getZIndex() === -1)
 
     let bgBaseLayer: BaseLayer | undefined = undefined
     if (bgLayer) {
@@ -164,6 +152,6 @@ export default function useOpenLayers() {
     reorderLayers,
     setLayerOpacity,
     setBgLayer,
-    applyOnBgLayer,
+    applyOnBgLayer
   }
 }

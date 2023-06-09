@@ -12,14 +12,15 @@ const { t } = useTranslation()
 const themeStore = useConfigStore()
 const themesService = useThemes()
 const { theme, themes } = storeToRefs(themeStore)
-const availableThemes = computed(() =>
-  themes.value?.map(theme => ({
-    label: t(theme.name),
-    value: theme.name,
-    ariaLabel: t(`Changer de theme : {{theme}}`, theme.name),
-  })) || []
+const availableThemes = computed(
+  () =>
+    themes.value?.map((theme) => ({
+      label: t(theme.name),
+      value: theme.name,
+      ariaLabel: t(`Changer de theme : {{theme}}`, theme.name)
+    })) || []
 )
-const themeName = computed(() => (theme.value?.name || 'theme'))
+const themeName = computed(() => theme.value?.name || 'theme')
 
 function setTheme(themeName: string) {
   themesService.setTheme(themeName)
@@ -28,9 +29,10 @@ function setTheme(themeName: string) {
 
 <template>
   <DropdownList
-      class="rhino-theme-selector rhino-dropdown"
-      :options="availableThemes"
-      :placeholder="themeName"
-      v-model="themeName"
-      @change="setTheme" />
+    class="rhino-theme-selector rhino-dropdown"
+    :options="availableThemes"
+    :placeholder="themeName"
+    v-model="themeName"
+    @change="setTheme"
+  />
 </template>

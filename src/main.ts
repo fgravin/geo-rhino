@@ -22,8 +22,8 @@ i18next.init({
   ns: ['client'],
   fallbackLng: 'fr',
   backend: {
-    loadPath: `${import.meta.env.BASE_URL}assets/locales/{{ns}}.{{lng}}.json`,
-  },
+    loadPath: `${import.meta.env.BASE_URL}assets/locales/{{ns}}.{{lng}}.json`
+  }
 })
 
 const app = createApp(App)

@@ -1,17 +1,14 @@
 import type { ThemeNodeModel } from '@/composables/themes/themes.model'
 import type { LayerTreeNodeModel } from './layer-tree.model'
 
-export function themesToLayerTree(
-  node: ThemeNodeModel,
-  depth = 0
-): LayerTreeNodeModel {
+export function themesToLayerTree(node: ThemeNodeModel, depth = 0): LayerTreeNodeModel {
   const { name, id, children, metadata } = node
   return {
     name,
     id: id as unknown as string,
     depth,
-    children: children?.map(child => themesToLayerTree(child, depth + 1)),
+    children: children?.map((child) => themesToLayerTree(child, depth + 1)),
     checked: false,
-    expanded: metadata?.is_expanded || false,
+    expanded: metadata?.is_expanded || false
   }
 }

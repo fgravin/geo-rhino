@@ -23,27 +23,22 @@ export class UrlStorage implements Storage {
   }
 
   getSnappedParamsAsObj() {
-    return this.getSnappedParams().reduce(
-      (prevObj: { [key: string]: string }, currParam) => {
-        const [currKey, currValue] = currParam.split('=')
+    return this.getSnappedParams().reduce((prevObj: { [key: string]: string }, currParam) => {
+      const [currKey, currValue] = currParam.split('=')
 
-        return { ...prevObj, [currKey]: currValue }
-      },
-      {}
-    )
+      return { ...prevObj, [currKey]: currValue }
+    }, {})
   }
 
   getSnappedParams() {
     return this.getSnappedUrl()
       .search.replace('?', '')
       .split('&')
-      .filter(val => val.split('=')[1])
+      .filter((val) => val.split('=')[1])
   }
 
   setItem(key: string, value: string) {
-    const params = new URLSearchParams(
-      new URL(window.location.toString()).search
-    )
+    const params = new URLSearchParams(new URL(window.location.toString()).search)
     params.set(encodeURIComponent(key), encodeURIComponent(value))
 
     try {
@@ -58,9 +53,7 @@ export class UrlStorage implements Storage {
   }
 
   removeItem(key: string) {
-    const params = new URLSearchParams(
-      new URL(window.location.toString()).search
-    )
+    const params = new URLSearchParams(new URL(window.location.toString()).search)
 
     params.delete(key)
 

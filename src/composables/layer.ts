@@ -17,6 +17,6 @@ export function useLayer(layer: Layer | IBackgroundLayer, context?: any) {
   return {
     t,
     getLabel,
-    onClickInfo,
+    onClickInfo
   }
 }

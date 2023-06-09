@@ -17,25 +17,21 @@ export const useMapStore = defineStore('map', () => {
   }
 
   function removeLayers(...layerIds: LayerId[]) {
-    layers.value = layers.value.filter(
-      layer => layerIds.indexOf(layer.id) === -1
-    )
+    layers.value = layers.value.filter((layer) => layerIds.indexOf(layer.id) === -1)
   }
 
   function hasLayer(layerId: LayerId) {
-    return !!layers.value?.find(layer => layer.id === layerId)
+    return !!layers.value?.find((layer) => layer.id === layerId)
   }
 
   function reorderLayers(layersId: LayerId[]) {
     layers.value = [
-      ...(layers.value?.sort(
-        (a, b) => layersId.indexOf(a.id) - layersId.indexOf(b.id)
-      ) || []),
+      ...(layers.value?.sort((a, b) => layersId.indexOf(a.id) - layersId.indexOf(b.id)) || [])
     ]
   }
 
   function setLayerOpacity(layerId: LayerId, opacity: number) {
-    layers.value = layers.value.map(elt => {
+    layers.value = layers.value.map((elt) => {
       if (elt.id === layerId) {
         return { ...elt, opacity: opacity, previousOpacity: elt.opacity }
       }
@@ -52,7 +48,7 @@ export const useMapStore = defineStore('map', () => {
     reorderLayers,
     setLayerOpacity,
     setBgLayer,
-    hasLayer,
+    hasLayer
   }
 })
 

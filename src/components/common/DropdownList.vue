@@ -51,11 +51,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutsideOpenBtn))
       </button>
     </div>
     <div class="rhino-dropdown-wrapper">
-      <ul
-        class="rhino-dropdown-list"
-        :class="isOpen ? '' : 'hidden'"
-        tabindex="-1"
-      >
+      <ul class="rhino-dropdown-list" :class="isOpen ? '' : 'hidden'" tabindex="-1">
         <li
           v-for="option in props.options"
           :key="option.value"

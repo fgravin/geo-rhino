@@ -36,10 +36,7 @@ export function createBgWmtsLayer(layer: Layer): TileLayer<WMTS> {
   const requestScheme = 'https'
 
   const bgConfig = bgConfigFixture()
-  const srv =
-    requestScheme === 'https'
-      ? bgConfig.https_bg_server
-      : bgConfig.http_bg_server
+  const srv = requestScheme === 'https' ? bgConfig.https_bg_server : bgConfig.http_bg_server
   const layer_path = `${bgConfig.bg_wmts_server_path}${hasRetina ? '_hd' : ''}`
   const full_tile_template = `${bgConfig.bg_wmts_tile_template}.${imageExt}`
   const url = `//${srv}.${domain}/${layer_path}/${full_tile_template}`
@@ -58,10 +55,10 @@ export function createBgWmtsLayer(layer: Layer): TileLayer<WMTS> {
         origin: getTopLeft(extent),
         extent,
         resolutions: bgConfig.bg_layer_resolutions,
-        matrixIds: bgConfig.bg_matrix_ids,
+        matrixIds: bgConfig.bg_matrix_ids
       }),
       style: 'default',
-      crossOrigin: 'anonymous',
+      crossOrigin: 'anonymous'
     }),
     properties: {
       // check that olcs.extent is still available for legacy app
@@ -71,8 +68,8 @@ export function createBgWmtsLayer(layer: Layer): TileLayer<WMTS> {
         bgConfig.bg_layer_projection
       ),
       label: name,
-      id,
-    },
+      id
+    }
   })
 
   // tileLayer.type = 'TILE'
